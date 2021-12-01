@@ -89,5 +89,3 @@ SELECT DISTINCT p.ProductSubcategoryID,p.Color
 FROM Production.Product p
 WHERE p.ProductSubcategoryID IS NOT NULL AND p.Color IS NOT NULL
 
-
-
