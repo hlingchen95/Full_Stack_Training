@@ -1,0 +1,303 @@
+Test your Knowledge
+1. When to use String vs. StringBuilder in C# ?
+- when you want to make modification on the string, use stringbuilder.
+2. What is the base class for all arrays in C#?
+- The Array class is the base class for all the arrays in C#.
+3. How do you sort an array in C#?
+- We can sort a one-dimensional array in two ways, using Array.Sort() method 
+4. What property of an array object can be used to get the total number of elements in an array?
+- Length Property is used to get the total number of elements in all the dimensions of the Array. 
+5. Can you store multiple data types in System.Array?
+- No, we cannot store multiple datatype in an Array, we can store similar datatype only in an Array.
+6. What’s the difference between the System.Array.CopyTo() and System.Array.Clone()?
+- The Clone() method returns a new array (a shallow copy) object containing all the elements in the original array. The CopyTo() method copies the elements into another existing array.
+
+Practice Arrays
+1. Copying an Array
+
+int[] array = new int[10] {1,2,3,4,5,6,7,8,9,10};
+int[] newArray = new int[array.Length] 
+for (int i = 0; i < array.Lenght; index++){
+	newArray.append(array(i));
+}
+Console.WriteLine(array);
+Console.WriteLine(newArray);
+
+2. Write a simple program that lets the user manage a list of elements. 
+
+List<String> commands = new List<String>();
+
+while (command != "+" || command != "-" || command != "--"){
+
+	Console.WriteLine("Enter command (+ item, - item, or -- to clear)):");
+	command = Console.ReadLine();
+	
+	if (command != "+"){
+		commands.add(command);
+	}if else(command != "-"){
+		commands.remove(command);
+	}else{
+		commands.clear();
+	}
+}
+Console.WriteLine(commands);
+3. Write a method that calculates all prime numbers in given range and returns them as array of integers
+
+static int [] FindPrimesInRange(startNum, endNum){
+            int count=0;
+           
+            for (int i = startNum; i < endNum; i++)
+            {
+                count = 0;
+                if (i > 1)
+                {
+                    for (int j = 2; j < i; j++)
+                    {
+                        if (i % j == 0)
+                        {
+                            count = 1;
+                            break;
+                        }
+                    }
+                    if (count == 0)
+                    {
+                        Console.Write(i+"  ");
+                    }
+
+}
+
+
+4. Write a program to read an array of n integers (space separated on a single line) and an integer k, 
+rotate the array right k times and sum the obtained arrays after each rotation as shown below.
+- After r rotations the element at position I goes to position (I + r) % n.
+- The sum[] array can be calculated by two nested loops: for r = 1 ... k; for I = 0 ... n-1.
+
+
+    public static void rightRotateByOne(int[] A)
+    {
+        int last = A[A.length - 1];
+        for (int i = A.length - 2; i >= 0; i--) {
+            A[i + 1] = A[i];
+        }
+ 
+        A[0] = last;
+    }
+ 
+    // Function to right-rotate an array by `k` positions
+    public static void rightRotate(int[] A, int k)
+    {
+        // base case: invalid input
+        if (k < 0 || k >= A.length) {
+            return;
+        }
+ 
+        for (int i = 0; i < k; i++) {
+            rightRotateByOne(A);
+        }
+    }
+ 
+    public static void main(String[] args)
+    {
+        int[] A = { 1, 2, 3, 4, 5, 6, 7 };
+        int k = 3;
+ 
+        rightRotate(A, k);
+ 
+        System.out.println(Arrays.toString(A));
+    }
+
+5. Write a program that finds the longest sequence of equal elements in an array of integers. 
+If several longest sequences exist, print the leftmost one.
+
+        static void Main(string[] args)
+        {
+            var elemts = new int[] { 0, 1, 1, 5, 2, 2, 6, 3, 3 };
+
+            var result = LongestSequence(elemts);
+
+            foreach (var i in result)
+            {
+                Console.Write(i + "\t");
+            }
+
+            Console.ReadLine();
+        }
+
+        public static int[] LongestSequence(int[] elems)
+        {
+            var longSequenceEqualElem = new List<int>();
+            return LongestSequenceRec(elems, longSequenceEqualElem, 0);
+        }
+
+        private static int[] LongestSequenceRec(int[] elems, List<int> sequence, int pos)
+        {
+            if (pos < elems.Length)
+            {
+                if (sequence.Contains(elems[pos]))
+                {
+                    sequence.Add(elems[pos]);
+                    return LongestSequenceRec(elems, sequence, pos + 1);
+                }
+                else
+                {
+                    var newSeq = LongestSequenceRec(elems, new List<int> { elems[pos] }, pos + 1);
+                    return (newSeq.Length > sequence.Count) ? newSeq.ToArray() : sequence.ToArray();
+                }
+            }
+            return sequence.ToArray();
+        }
+
+7. Write a program that finds the most frequent number in a given sequence of numbers.  
+In case of multiple numbers with the same maximal frequency, print the leftmost of them
+    static void print_N_mostFrequentNumber(int[] arr, 
+                                           int n,
+                                           int k)
+    {
+  
+        Map<Integer, Integer> mp
+            = new HashMap<Integer, Integer>();
+
+        for (int i = 0; i < n; i++) {
+  
+
+            mp.put(arr[i], 
+                   mp.getOrDefault(arr[i], 0) + 1);
+        }
+  
+
+        List<Map.Entry<Integer, Integer> > list
+            = new ArrayList<Map.Entry<Integer,
+                                      Integer> >(
+                mp.entrySet());
+  
+        // Sort the list
+        Collections.sort(
+            list,
+            new Comparator<Map.Entry<Integer, 
+                                     Integer> >() 
+          {
+                public int compare(
+                    Map.Entry<Integer, Integer> o1,
+                    Map.Entry<Integer, Integer> o2)
+                {
+                    if (o1.getValue() == o2.getValue())
+                        return o2.getKey() - o1.getKey();
+                    else
+                        return o2.getValue()
+                            - o1.getValue();
+                }
+            });
+  
+        for (int i = 0; i < k; i++)
+            System.out.println(list.get(i).getKey());
+    }
+  
+ 
+    public static void main(String[] args)
+    {
+        int arr[] = { 3, 1, 4, 4, 5, 2, 6, 1 };
+        int n = arr.length;
+        int k = 2;
+          
+        // Function call
+        print_N_mostFrequentNumber(arr, n, k);
+    }
+Practice Strings
+1.Write a program that reads a string from the console, reverses its letters and prints the result back at the console.
+Write in two ways
+- Convert the string to char array, reverse it, then convert it to string again
+- Print the letters of the string in back direction (from the last to the first) in a for-loop
+
+public static string Reverse( string s )
+{
+    char[] charArray = s.ToCharArray();
+    Array.Reverse( charArray );
+    return new string( charArray );
+}
+
+2. Write a program that reverses the words in a given sentence without changing the punctuation and spaces
+- Use the following separators between the words: . , : ; = ( ) & [ ] " ' \ / ! ? (space).
+- All other characters are considered part of words, e.g. C++, a+b, and a77 are considered valid words.
+- The sentences always start by word and end by separator.
+public static string ReverseWords(string str)
+{       
+   return String.Join(" ", str.Split('.', ' ').Reverse()).ToString();
+}
+
+3. Write a program that extracts from a given text all  palindromes, e.g. “ABBA”, “lamal”, “exe” 
+and prints them on the console on a single line, separated by comma and space.Print all unique palindromes (no duplicates), sorted
+    static bool isPalindrome(string str)
+    {
+        int i = 0, j = str.Length - 1;
+         
+        // traversing from both the ends
+        while (i < j)
+        {
+             
+            // not palindrome
+            if (str[i++] != str[j--])
+            return false;
+        }
+         
+        // palindrome
+        return true;
+    }
+     
+    // function to remove all the
+    // palindromic words from the
+    // given sentence
+    static String removePalinWords(string str)
+    {
+     
+        // 'final_str' to store the final
+        // string and 'word' to one by one
+        // store each word of 'str'
+        string final_str = "", word = "";
+         
+        // add space at the end of 'str'
+        str = str + " ";
+        int n = str.Length;
+         
+        // traversing 'str'
+        for (int i = 0; i < n; i++)
+        {
+         
+            // accumulating characters of
+            // the current word
+            if (str[i] != ' ')
+                word = word + str[i];
+            else
+            {
+         
+                // if 'word' is not palindrome
+                // then a add it to 'final_str'
+                if (!(isPalindrome(word)))
+                    final_str += word + " ";
+         
+                // reset
+                word = "";
+            }
+        }
+         
+        // required final string
+        return final_str;
+    }
+     
+    // Driver code
+    public static void Main ()
+    {
+        string str = "Text contains malayalam "
+                           + "and level words";
+        Console.WriteLine(removePalinWords(str));
+    }
+
+4. Write a program that parses an URL given in the following format:
+[protocol]://[server]/[resource]
+The parsing extracts its parts: protocol, server and resource. 
+- The [server] part is mandatory.
+- The [protocol] and [resource] parts are optional.
+int protocolLast= 0;
+int 
+For (int i = 0; i < Url.Length; i ++){
+	if 
+}
