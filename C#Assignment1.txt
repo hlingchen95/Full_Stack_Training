@@ -1,0 +1,128 @@
+Understanding Data Types
+Test your Knowledge 
+1. What type would you choose for the following “numbers”? 
+- A person’s telephone number ： String
+- A person’s height : Float
+- A person’s age : Int
+- A person’s gender (Male, Female, Prefer Not To Answer) : String
+- A person’s salary : Decimal
+- A book’s ISBN : String
+- A book’s price : Decimal
+- A book’s shipping weight : Float
+- A country’s population : Long
+- The number of stars in the universe Long
+- The number of employees in each of the small or medium businesses in the United Kingdom (up to about 50,000 employees per business) : Int
+
+2. What are the difference between value type and reference type variables? What is 
+boxing and unboxing?
+
+- Value type directly contain their data, each has its own copy of data, and operation on one can not effect another. While reference types store references to their data, Two reference variable can reference the same object, operation on one can effect another.
+- Boxing is to convert value type to reference type and unboxing is to convert reference type to value type.
+
+3. What is meant by the terms managed resource and unmanaged resource in .NET
+
+- Managed resources are those that are pure . NET code and managed by the runtime and are under its direct control. Unmanaged resources are those that are not. 
+
+4. Whats the purpose of Garbage Collector in .NET? 
+
+- It manages allocation and release of memory in an application.
+
+
+
+Practice number sizes and ranges
+1. Create a console application project named /02UnderstandingTypes/ that outputs the number of bytes in memory that each of the following number types uses, and the 
+minimum and maximum values they can have: sbyte, byte, short, ushort, int, uint, long, ulong, float, double, and decimal. 
+
+        static void Main(string[] args)
+        {
+           // sbyte, byte, short, ushort, int, uint, long, ulong, float, double, and decimal.
+
+            Console.WriteLine($"float {sizeof(sbyte)} , {sbyte.MinValue} , {sbyte.MaxValue}");
+            Console.WriteLine($"float {sizeof(byte)} , {byte.MinValue} , {byte.MaxValue}");
+            Console.WriteLine($"float {sizeof(short)} , {short.MinValue} , {short.MaxValue}");
+            Console.WriteLine($"float {sizeof(ushort)} , {ushort.MinValue} , {ushort.MaxValue}");
+            Console.WriteLine($"float {sizeof(int)} , {int.MinValue} , {int.MaxValue}");
+            Console.WriteLine($"float {sizeof(uint)} , {uint.MinValue} , {uint.MaxValue}");
+            Console.WriteLine($"float {sizeof(long)} , {long.MinValue} , {long.MaxValue}");
+            Console.WriteLine($"float {sizeof(ulong)} , {ulong.MinValue} , {ulong.MaxValue}");
+            Console.WriteLine($"float {sizeof(float)} , {float.MinValue} , {float.MaxValue}");
+            Console.WriteLine($"float {sizeof(double)} , {double.MinValue} , {double.MaxValue}");
+            Console.WriteLine($"float {sizeof(decimal)} , {decimal.MinValue} , {decimal.MaxValue}");
+
+
+
+        }
+2. Write program to enter an integer number of centuries and convert it to years, days, hours, minutes, seconds, milliseconds, microseconds, nanoseconds.
+
+        static void Main(string[] args)
+        {
+            
+
+            int i = 1;
+
+            ConvertCentury convertCentury = new ConvertCentury();
+
+            convertCentury.Result(i);
+
+
+
+        }
+    public class ConvertCentury
+    {
+        public void Result(int i)
+        {
+            int year = i * 100;
+            int day = year * 365;
+            int hour = day * 24;
+            long minute = hour * 60;
+            long second = minute * 60;
+            long millisecond = second * 1000;
+            long microsecond = millisecond * 1000;
+            long nanosecond = millisecond * 1000;
+            Console.WriteLine($"{i} centuries = {year} years = {day} days = {hour} hours = {minute} minutes = {second} seconds = {millisecond} milliseconds = {microsecond} microseconds = {nanosecond} nanoseconds");
+        }
+
+    }
+
+
+Controlling Flow and Converting Types 
+Test your Knowledge
+1. What happens when you divide an int variable by 0? 
+
+- error
+
+2. What happens when you divide a double variable by 0? 
+
+- infinite
+
+3. What happens when you overflow an int variable, that is, set it to a value beyond its range? 
+
+- error
+
+4. What is the difference between x = y++; and x = ++y;? 
+
+- y++ adds 1 in next loop and ++y adds 1 this round.
+ 
+5. What is the difference between break, continue, and return when used inside a loop statement? 
+
+- break: breaks out of loop. continue: continues the function. Return: returns the output variable.
+
+6. What are the three parts of a for statement and which of them are required? 
+
+- access modifier, return type, method name, parameter. return type and method name are requiered. 
+
+7. What is the difference between the = and == operators? 
+
+- = is assigning value to a variable and == is to compare equality.
+
+8. Does the following statement compile? for ( ; true; ) ; 
+
+- yes
+
+9. What does the underscore _ represent in a switch expression? 
+
+- The underscore (_) character replaces the default keyword to signify that it should match anything if reached.
+
+10. What interface must an object implement to be enumerated over by using the foreach statement? 
+
+- The IEnumerable interface permits enumeration by using a foreach loop
