@@ -1,0 +1,149 @@
+/*Test your Knowledge
+1. Describe the problem generics address.
+    - Generics in C# is its most powerful feature. It allows you to define the type-safe data structures. 
+      This out-turn in a remarkable performance boost and high-grade code, because it helps to reuse data processing algorithms without replicating type-specific code.
+
+2. How would you create a list of strings, using the generic List class?
+    - List<string> animalsList = new List<string>();
+
+3. How many generic type parameters does the Dictionary class have?
+    - Dictionary<TKey,TValue> generic type has two type parameters, TKey and TValue , that represent the types of its keys and values.
+
+4. True / False.When a generic class has multiple type parameters, they must all match.
+    - True
+
+5. What method is used to add items to a List object?
+    - List.Add() method adds an object to the end of the List<T>
+
+6. Name two methods that cause items to be removed from a List.
+    - the Remove() method to remove the first occurrence of the specified element in the List<T> collection.
+    - RemoveAt() method to remove an element from the specified index.
+
+7. How do you indicate that a class has a generic type parameter?
+    - Generic classes have a generic type parameter list in angle brackets ( <> )
+
+8. True/False. Generic classes can only have one generic type parameter.
+    - True
+
+9. True/False. Generic type constraints limit what can be used for the generic type.
+    - False
+
+10. True/False. Constraints let you use the methods of the thing you are constraining to.
+    - True
+
+Practice working with Generics
+1. Create a custom Stack class  MyStack<T> that can be used with any data type which has following methods
+
+1). int Count()
+2). T Pop()
+3). Void Push()
+
+public static class MyStack<T> 
+    {
+
+        public static int Count() {}
+        public static T Count() {}
+        public static Void Push() {}
+        
+     }  
+
+2. Create a Generic List data structure  MyList<T> that can store any data type. Implement the following methods.
+
+1). void Add (T element)
+2). T Remove (int index)
+3). bool Contains (T element)
+4). void Clear ()
+5). void InsertAt (T element, int index)
+6). void DeleteAt (int index)
+7). T  Find (int index)
+
+public static class MyList<T> 
+    {
+
+        public static void Add (T element) {}
+        public static T Remove (int index) {}
+        public static void Clear () {}
+        public static void InsertAt (T element, int index) {}
+        public static void DeleteAt (int index)) {}
+        public static T  Find (int index) {}
+        public static bool Contains (T element) {}
+        
+     } 
+
+3). Implement a GenericRepository<T> class that implements IRepository<T> interface that will have common /CRUD/ operations so that it can work with any data source such as SQL Server, Oracle, In-Memory Data etc.  
+Make sure you have a type constraint on T were it should be of reference type and can be of type Entity which has one property called Id. IRepository<T> should have following methods
+
+1). void Add(T item)
+2). void Remove(T item)
+3). Void Save()
+4). IEnumerable<T> GetAll()
+5). T GetById(int id)
+
+public static class GenericRepository<T> : IRepository<T>
+    {
+
+        List<Customer> lstCustomer = new List<Customer>();
+        public int Delete(int id)
+        {
+            Customer c = GetById(id);
+            if (c != null)
+            {
+                lstCustomer.Remove(c);
+                return 1;
+            }
+            return 0;
+        }
+
+        public List<Customer> GetAll()
+        {
+            return lstCustomer;
+        }
+
+        public Customer GetById(int id)
+        {
+            for (int i = 0; i < lstCustomer.Count; i++)
+            {
+                if (lstCustomer[i].Id == id)
+                {
+                    return lstCustomer[i];
+                }
+            }
+            return null;
+        }
+
+        public int Insert(Customer obj)
+        {
+            lstCustomer.Add(obj);
+            return 1;
+        }
+
+        public int Update(Customer obj)
+        {
+            Customer c = GetById(obj.Id);
+            if (c!=null)
+            {
+                c.Id = obj.Id;
+                c.Name = obj.Name;
+                c.Email = obj.Email;
+                return 1;
+            }
+            return 0;
+        }
+     } 
+    public interface IRepository<T> where T : class
+    {
+        int Insert(T obj);
+        int Update(T obj);
+        int Delete(int id);
+        List<T> GetAll();
+        T GetById(int id);
+
+        void Add(T item)
+        void Remove(T item)
+        void Save()
+        IEnumerable<T> GetAll()
+    T GetById(int id)
+    }
+
+
+ */
